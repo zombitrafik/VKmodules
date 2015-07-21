@@ -4,7 +4,7 @@ var VK = require('vksdk');
 var app = express();
 
 var vk = new VK({
-    'appID'     : 5002560,
+    'appId'     : 5002560,
     'appSecret' : 'DxgrLEDQGv94uODwpY9d',
     'mode'      : 'oauth'
 });
