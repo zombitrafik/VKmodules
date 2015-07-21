@@ -19,18 +19,14 @@ app.get('/', function (req, res) {
 app.get('/callback', function (req, res) {
 	var code = req.query.code;
 	vk.setToken({ code : code });
-	return res.json({code: code});
-	vk.on('tokenByCodeReady', function() {
-		console.log('1234');
+	return vk.on('tokenByCodeReady', function() {
+
 	    vk.request('getProfiles', {'uids' : '29894'});
 
-	    vk.on('done:getProfiles', function(_o) {
-		    res.json(_o);
+	    return vk.on('done:getProfiles', function(_o) {
+			return res.json(_o);
 		});
 
-	});
-	vk.on('tokenByCodeNotReady', function(_error) {
-	    console.log('error ' + _error);
 	});
 });
 
