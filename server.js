@@ -12,29 +12,25 @@ var vk = new VK({
 
 
 app.get('/', function (req, res) {
-
-	/*
-	vk.requestServerToken();
-
-	// Waiting for special 'serverTokenReady' event
-	vk.on('serverTokenReady', function(_o) {
-	    // Here will be server access token
-	    res.json({data: _o});
-	});
-*/
-res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=friends,video,wall,offline&display=page&response_type=code');
-	
+	res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=wall&display=page&response_type=code');
 });
 
 
 app.get('/callback', function (req, res) {
-	if(req.query.code){
-		var code = req.query.code;
-		console.log(code);
-		res.redirect('https://api.vk.com/oauth/access_token?client_id=5002560&client_secret=DxgrLEDQGv94uODwpY9d&code='+code+'&redirect_uri=https://vkmodules.herokuapp.com/callback');
-	}else{
-		res.json(req.body);
-	}
+	var code = req.query.code;
+	vk.setToken({ code : code });
+	vk.on('tokenByCodeReady', function() {
+		console.log('1234');
+	    vk.request('getProfiles', {'uids' : '29894'});
+
+	    vk.on('done:getProfiles', function(_o) {
+		    console.log(_o);
+		});
+		
+	});
+	vk.on('tokenByCodeNotReady', function(_error) {
+	    console.log('error ' + _error);
+	});
 });
 
 
