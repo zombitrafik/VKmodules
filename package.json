@@ -6,6 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "vksdk": "^5.1.0"
   }
