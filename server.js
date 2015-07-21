@@ -19,17 +19,18 @@ app.get('/', function (req, res) {
 app.get('/callback', function (req, res) {
 	var code = req.query.code;
 	vk.setToken({ code : code });
-	return vk.on('tokenByCodeReady', function() {
-
-	    vk.request('getProfiles', {'uids' : '29894'});
-
-	    return vk.on('done:getProfiles', function(_o) {
-			return res.json(_o);
-		});
-
-	});
+	return;
 });
 
+vk.on('done:getProfiles', function(_o) {
+	console.log('profile get');
+	console.log(_o);
+});
+
+vk.on('tokenByCodeReady', function() {
+	console.log('token ready');
+    vk.request('getProfiles', {'uids' : '29894'});
+});
 
 app.set('port', process.env.PORT || 3000);
 
