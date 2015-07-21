@@ -37,8 +37,6 @@ app.get('/callback', function (req, res) {
 	}
 });
 
-app.get('/login', f)
-
 
 app.set('port', process.env.PORT || 3000);
 
