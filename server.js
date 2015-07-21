@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 	    res.json({data: _o});
 	});
 */
-res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=friends,video,offline&display=page&response_type=code');
+res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=friends,video,wall,offline&display=page&response_type=code');
 	
 });
 
