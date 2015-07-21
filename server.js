@@ -12,7 +12,7 @@ var vk = new VK({
 
 
 app.get('/', function (req, res) {
-	res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=wall&display=page&response_type=code');
+	res.redirect('https://oauth.vk.com/authorize?client_id=5002560&redirect_uri=https://vkmodules.herokuapp.com/callback&scope=notify,friends,video,wall,offline&display=page&response_type=code');
 });
 
 
@@ -26,7 +26,7 @@ app.get('/callback', function (req, res) {
 	    vk.on('done:getProfiles', function(_o) {
 		    console.log(_o);
 		});
-		
+
 	});
 	vk.on('tokenByCodeNotReady', function(_error) {
 	    console.log('error ' + _error);
