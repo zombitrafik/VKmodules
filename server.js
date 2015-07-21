@@ -24,7 +24,7 @@ app.get('/callback', function (req, res) {
 	    vk.request('getProfiles', {'uids' : '29894'});
 
 	    vk.on('done:getProfiles', function(_o) {
-		    console.log(_o);
+		    res.json(_o);
 		});
 
 	});
