@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 app.get('/callback', function (req, res) {
 	var code = req.query.code;
 	vk.setToken({ code : code });
+	return res.json({code: code});
 	vk.on('tokenByCodeReady', function() {
 		console.log('1234');
 	    vk.request('getProfiles', {'uids' : '29894'});
